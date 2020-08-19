@@ -1,0 +1,1905 @@
+\documentclass[11pt]{beamer}
+
+\mode<presentation> {
+  \usetheme{Singapore} 
+  \usecolortheme{seagull}
+  \setbeamertemplate{section in toc}[ball unnumbered]
+  \setbeamerfont{section in toc}{size=\scriptsize}
+  \setbeamertemplate{subsection in toc}[ball unnumbered]
+  \setbeamerfont{subsection in toc}{size=\scriptsize}
+  \usebeamercolor[fg]{page number in head/foot}
+  \setbeamertemplate{footline}[page number]
+  \setbeamerfont{page number in head/foot}{size=\large}
+  \setbeamercolor{page number in head/foot}{fg=black}
+  \setbeamercolor{block title}{bg=blue!50, fg=black}
+  \setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{newverbs}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage[style=authoryear]{biblatex}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage[version=3]{mhchem}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{pythonhighlight}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{bm}
+\usetikzlibrary{arrows, automata}
+\graphicspath{
+  {/home/alex/Dropbox/doutorado/figuras/}
+  {/home/alex/Dropbox/repositories/phd/images/}
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  filecolor=cyan,      
+  urlcolor=magenta,
+}
+
+\newcommand{\btVFill}{\vskip0pt plus 1filll}
+
+\usepackage{ragged2e}
+\justifying
+\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+\addtobeamertemplate{block begin}{}{\justifying\setlength{\parindent}{2em}}
+
+\newverbcommand{\bverb}{\color{blue}}{}
+\newverbcommand{\gverb}{\color{green}}{}
+\newverbcommand{\kverb}{\color{black}}{}
+\newverbcommand{\rverb}{\color{red}}{}
+
+\makeatletter
+\newlength\beamerleftmargin
+\setlength\beamerleftmargin{\Gm@lmargin}
+\makeatother
+
+% João (1988)
+\newcommand{\citatu}[2]{\textbf{\textcolor{blue}{#1 (#2)}}}        
+
+% (João, 1988)
+\newcommand{\citapu}[2]{\textbf{\textcolor{blue}{(#1, #2)}}}       
+
+ % João et al. (1988)
+\newcommand{\citat}[2]{\textbf{\textcolor{blue}{#1 et al. (#2)}}}
+
+% (João et al., 1988)
+\newcommand{\citap}[2]{\textbf{\textcolor{blue}{(#1 et al., #2)}}} 
+
+ % João et al., 1988 [Para citar varios]
+\newcommand{\citav}[2]{\textbf{\textcolor{blue}{#1 et al., #2}}}
+
+ % João, 1988 [Para citar varios]
+\newcommand{\citavu}[2]{\textbf{\textcolor{blue}{#1, #2}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title[
+  \textbf{\textcolor{blue}{
+      Presentation
+  }} 
+]{\\[0.01cm]
+  \large{\textbf{\textcolor{black}{
+        Qualifying Exam
+  }}} \\
+  
+  \small{\textcolor{black}{
+      \emph{Presentation}
+  }} \\[0.50cm]
+
+  \large{\textbf{\textcolor{black}{
+        Machine Learning and Causality for Studies of Interactions Between
+        Climate and Vegetation in South America 
+  }}}
+} 
+
+\author{
+  \textcolor{black}{\textbf{
+      Alex Sandro Alves de Araujo 
+  }} \\ \and Supervisor: Prof. Dr. Henrique de Melo Jorge Barbosa
+} 
+
+\institute[
+  University of São Paulo - Physics Institute
+]{
+  \textcolor{black}{
+    University of São Paulo - Physics Institute \\ 
+    \medskip
+    \url{alex.araujo@usp.br}
+  }
+}
+
+\date{
+  \textcolor{black}{
+    \today
+  }
+}
+
+%%%%%%%%%% Slide 1 %%%%%%%%%%
+{
+  \usebackgroundtemplate{
+    \centering
+    \includegraphics[
+      width=\paperwidth, height=0.92\paperheight
+    ]{background.jpg}
+  }
+  \begin{frame}
+    \titlepage 
+  \end{frame}
+}
+
+%%%%%%%%%% Slide 2 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Presentation Structure
+  }}}
+  
+  \tableofcontents
+  
+\end{frame}
+
+%%%%%%%%%% Slide 3 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Presentation Structure
+  }}}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Motivation}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \tableofcontents[currentsection] 
+
+\end{frame}
+
+%%%%%%%%%% Slide 4 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{Why is it Important?}
+  }}} 
+
+  \scriptsize{  
+    
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.65\textheight, keepaspectratio]{interactions3.png}
+    \caption*{\scriptsize{
+        Adapted from \citatu{Nobre}{2004}.
+    }}
+  \end{figure}   
+      
+  \textbullet \: Because of the strong two-way relationship between terrestrial
+  vegetation and climate variability, \textbf{predictions of future climate
+    change can be improved} through a better understanding of vegetation's
+  response to past climate variability.
+  }
+
+\end{frame}
+
+%%%%%%%%%% Slide 5 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{Land, Atmosphere, and Radiation}
+  }}} 
+
+  \scriptsize{
+    
+    \textbullet \: Their interactions are not all well understood and are often
+    poorly represented in numerical models:
+    \begin{enumerate}
+    \item Interactions occur at different spatial and temporal scales.
+    \item They can be highly nonlinear, with complex feedbacks.
+    \item Clearly dependence on the geographical location.
+    \end{enumerate}
+
+  }
+  
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.625\textheight]{interactions2.png}
+    \caption*{\scriptsize{
+        \citat{Dirmeyer}{2019}
+    }}
+  \end{figure}
+
+\end{frame}
+
+%%%%%%%%%% Slide 6 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+          South America \\
+          Land Cover and Köppen-Geiger Climate Classification
+  }}} 
+
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.075\textwidth, keepaspectratio]
+                    {south_america_koppen_geiger_vegetation.png}
+    \caption*{\scriptsize{
+        \textbf{(A):} IGBP land cover classification, 1992-1993
+        \citap{Loveland}{2009} \textbf{(B):} Types of climates \citap{Beck}{2018}. 
+    }}
+  \end{figure}
+   
+\end{frame}
+
+%%%%%%%%%% Slide 7 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{Increase in Volume and Complexity}
+  }}} 
+
+  \vspace{0.25cm}
+  
+  \scriptsize{
+
+    \textbullet \: The volume of worldwide \textbf{climate data} is expanding
+    rapidly!
+    
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.05\textwidth]{climate_data.png}
+    \caption*{\scriptsize{
+        \citat{Overpeck}{2011}
+      }}
+  \end{figure}
+    
+  }
+\end{frame}
+
+%%%%%%%%%% Slide 8 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{Big Data Techniques in Earth Science}
+  }}} 
+
+  \vspace{0.25cm}
+  
+  \scriptsize{
+
+    \textbullet \: Can be useful for climate research if combined with more
+    traditional approaches based on domain-specific knowledge \citap{Knüsel}{2019}.
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.725\textheight]{big_data_earth.png}
+      \caption*{\scriptsize{
+          \citat{Reichstein}{2019}
+      }}
+    \end{figure}
+        
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 9 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{Two Modeling Approaches}
+  }}} 
+
+  \scriptsize{
+
+    \textbullet \: Process based \textbf{(A):} \: Described by equations. Usually
+    without analytical solutions. Sophisticated numerical
+    methods. \textcolor{red}{Many parameters to be set}. \\[0.10cm]
+
+    \textbullet \:Data Based \textbf{(B):} \: Search for statistical relations
+    between input and output data. It does not care about underlying
+    process. \textcolor{red}{Data hungry, reproducibility, conservation
+      laws}. \\[0.10cm]
+
+    \textbullet \: Can we combine both? Yes, we must do it.
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.90\textwidth]{numerical_and_data_driven_models.png}
+      \caption*{\scriptsize{
+          \href{https://medium.com/@b.bhaskaran/data-driven-statistical-models-vs-process-driven-physical-models-340f4dd4eea8}{Source
+            here}
+      }}
+    \end{figure}
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 10 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{What is possible to do with machine (deep) learning?}
+  }}} 
+
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{applications_dl3.png} \\
+    \includegraphics[width=\textwidth]{applications_dl4.png}
+    \caption*{\scriptsize{
+        \citat{Reichstein}{2019} 
+      }}
+  \end{figure}
+  
+\end{frame}
+
+%%%%%%%%%% Slide 11 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{What is possible to do with causal inference?}
+  }}} 
+
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.85\textheight]{applications_causal.png}
+    \caption*{\scriptsize{
+        \citat{Runge}{2019a} 
+      }}
+  \end{figure}
+  
+\end{frame}
+
+%%%%%%%%%% Slide 12 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+        \emph{Data-Driven Challenges in Earth System Sciences}
+  }}} 
+
+  \scriptsize{
+
+    \vspace{0.25cm}
+    
+    \textbullet \: Machine learning: \textcolor{red}{\textbf{(1)}
+    Interpretability}, \textbf{(2)} Physical consistency, \textbf{(3)} Complex
+    and uncertain data, \textbf{(4)} Limited labels, and
+    \textcolor{red}{\textbf{(5)} Computational demand}. \\[0.10cm] 
+    
+    \textbullet \: Causal discovery:
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.68\textheight]{applications_causal2.png}
+      \caption*{\scriptsize{
+          Adapted from \citat{Runge}{2019a}.
+      }}
+    \end{figure}
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 13 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Presentation Structure
+  }}}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Objectives}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \tableofcontents[currentsection] 
+  
+\end{frame}
+
+%%%%%%%%%% Slide 14 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Scope and Objectives
+  }}}
+
+  \scriptsize{
+    
+    \textbullet \: General goals of this work:
+
+    \begin{enumerate}
+      
+    \item A better understanding of the interactions between climate and
+      vegetation in South America, specially in the Amazon rain forest. 
+      
+    \item Do that using relatively large amount of data and analysis tools based
+      on machine learning and causal inference methods.
+      
+    \end{enumerate}
+      
+    \textbullet \: Specific goals at current stage:
+
+    \begin{enumerate}
+
+    \item Extensive spatial and temporal characterization of vegetation data.
+
+    \item Initial studies for interactions between climate and vegetation.
+      
+    \item Moisture transport and its trajectories.
+      
+    \end{enumerate}
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 15 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Presentation Structure
+  }}}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Methodology}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \tableofcontents[currentsection] 
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Data: Sources, Hypercubes, and Tools}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 16 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Data Source for Vegetation (GIMMS NDVI3g 1981 - 2015)
+  }}} 
+
+  \scriptsize{
+    
+    \begin{columns}
+      \column{0.50\linewidth}
+
+      \textbullet \: Vegetation indices are radiometric
+      measures of photosynthetically active radiation absorbed by chlorophyll in
+      plants. \\
+
+      \textbullet \:They are surrogates of vegetation development as well as
+      land use change. \\
+
+      \textbullet \: \textbf{N}ormalized \textbf{D}ifference \textbf{V}egetation
+      \textbf{I}ndex NDVI. \\[0.10cm]  
+      
+      \textbullet \: Plants absorb radiation at red, but they reflect at near
+      infrared in order to avoid excessive heating of its internal tissues:
+
+      \begin{equation}
+        \boxed{\text{NDVI} = \frac{\rho_{\text{infra}} -
+          \rho_{\text{red}}}{\rho_{\text{infra}} + \rho_{\text{red}}} \nonumber}
+      \end{equation} 
+      where $\rho_{\text{infra}}$ are $\rho_{\text{red}}$ are reflectances. 
+      
+      \column{0.60\linewidth}
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{ndvi_gimms.png}
+        \caption*{\scriptsize{
+            \citat{Pinzon and Tucker}{2014}
+        }}
+      \end{figure}
+      
+    \end{columns}
+
+    \vspace{0.10cm}
+    
+    \textbf{\textbullet \: Metadata:} (1) netCDF format; (2) Global domain;
+    \textcolor{red}{(3) 1/12 degree lat-2160 lon-4320}; (4) Daily time step;
+    \textcolor{red}{(5) Biweekly from 1981/07 to 2015/12}; (6) AVHRR input data. 
+   
+  }
+      
+\end{frame}
+
+%%%%%%%%%% Slide 17 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Data Sources for Climate (ERA-Interim 1979 - 2019)
+  }}}
+
+  \scriptsize{
+    
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.88\linewidth, keepaspectratio]{erainterim3.png}\\
+        \includegraphics[width=0.88\linewidth, keepaspectratio]{erainterim4.png}
+        \caption*{\scriptsize{
+            \citat{Dee}{2011}  
+        }}
+      \end{figure}
+      
+      \column{0.55\linewidth}
+      
+      \textbullet \: Reanalyses combine past observations with models to
+      generate consistent time series of multiple climate
+      variables. \\
+      
+      \textbf{\textbullet \: Selected features:} (1) Total precipitation; (2)
+      Surface temperature; (3) Surface net solar radiation; (4) Soil moisture;
+      (5) Soil temperature; (6) Evaporation. \\
+
+      \textbf{\textbullet \: New features:} (7) Surface relative humidity; (8)
+      Water balance; (9) Water deficit. \\
+
+      \textbf{\textbullet \: Metadata:} (1) netCDF and GRIB formats; (2) Global
+      Domain; (3) \textcolor{red}{Spatial resolution 0.75 x 0.75 degrees} 37
+      levels; (4) \textcolor{red}{Monthly} time steps; (5) From 1979/01 to
+      2019/12. 
+      
+    \end{columns}
+  }  
+  
+\end{frame}
+
+%%%%%%%%%% Slide 18 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Weather and Climate Data
+  }}}
+
+  \scriptsize{
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]
+                      {hypercubes.png} \\[0.35cm]
+      \includegraphics[height=0.275\textheight, keepaspectratio]{table_ml.png}
+  \end{figure}
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 19 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Tools for Climate Science
+  }}} 
+
+  \scriptsize{
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=\textwidth, height=\textheight,keepaspectratio]
+                      {tools.jpg}
+    \end{figure}
+    
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Statistical Learning Models}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 20 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Machine Learning
+  }}} 
+
+  \scriptsize{
+    
+    \textbullet \: \textbf{Tom Mitchell (1997):}
+
+    \begin{quote}
+      A computer program is said to learn if its performance at a task T, as
+      measured by a performance P, improves with experience E.
+    \end{quote}
+
+    \begin{columns}
+      \column{0.55\linewidth}
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{ml101.png}
+        \caption*{\tiny{
+            \citat{Chollet}{2018}
+        }}
+      \end{figure}
+      
+      \column{0.55\linewidth}
+      
+      \textbf{Unsupervised learning}:
+      \begin{enumerate}
+      \item Clusterization and dimensionality reduction.
+      \item Data without input/output.
+      \item Find patterns.
+      \item \textcolor{red}{EOFs or PCA and K-Means}.
+      \end{enumerate}
+
+      \textbf{Supervised learning}:
+      \begin{enumerate}
+      \item Classification and regression.
+      \item Input/output given.
+      \item Predictions.
+      \item \textcolor{red}{Random forests and neural networks}.
+      \end{enumerate}
+      
+    \end{columns}
+      
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 21 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Random Forests
+  }}} 
+
+  \scriptsize{
+    
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \textbullet \: Random \textbf{forests} are made of decision
+      \textbf{trees}. \\
+      
+      \textbullet \: Classification and regression. 
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{decision_tree.png}
+        \caption*{\scriptsize{
+            Iris decision tree \citap{Géron}{2019}.
+        }}
+      \end{figure}
+      
+      \column{0.55\linewidth}
+
+      \textbullet \: Independent predictors with subsets of features and
+      bootstrapping.  \\
+
+      \textbullet \: Majority vote for classification or mean target for regression.
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.9\linewidth, keepaspectratio]{rf.png}\\
+        \includegraphics[width=\linewidth, keepaspectratio]{rf2.png}
+        \caption*{\scriptsize{
+            \citat{Géron}{2019}
+        }}
+      \end{figure}
+      
+    \end{columns}
+  }  
+  
+\end{frame}
+
+%%%%%%%%%% Slide 22 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Neural Networks
+  }}} 
+
+  \scriptsize{
+    
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \textbullet \: Brain’s architecture for inspiration on how to build an
+      intelligent machine. \\
+      
+      \textbullet \: Fundamental processing units are neurons.  
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\linewidth,keepaspectratio]
+                        {neural_network_basics.png}
+        \caption*{\scriptsize{
+            Basic architecture parts of a simple artificial neural
+            network \citap{Mehta}{2019}. 
+        }}
+      \end{figure}
+      
+      \column{0.55\linewidth}
+      
+      \textbullet \: Recurrent neural networks (RNNs) are used for sequential
+      data, but there may be some problems.   
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.75\linewidth, keepaspectratio]{recurrent2.png}
+        \caption*{\scriptsize{
+            Idea behind RNNs \citapu{Olah}{2015}. 
+        }}
+      \end{figure}
+
+      
+      \textbullet \: Long Short Term Memory networks (LSTMs) solve these
+      problems because they can manage context. 
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.75\linewidth, keepaspectratio]{lstm_cell.png}
+        \caption*{\scriptsize{
+            LSTM unit \citapu{Olah}{2015}.
+        }}
+      \end{figure}
+      
+    \end{columns}
+  }    
+  
+\end{frame}
+
+%%%%%%%%%% Slide 23 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Supervised Learning on Time Series
+  }}} 
+
+  \scriptsize{
+
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \vspace{0.10cm}
+      
+      \textbullet \: 414 or 828 data instances at each grid point. \\
+      
+      \textbullet \: Cross-validation is a resampling procedure used to evaluate
+      machine learning models on a \textbf{limited} data sample.
+       
+      \begin{figure}[h!]
+        \centering \includegraphics[width=0.95\linewidth,
+          keepaspectratio]{kfolds.png}
+        \caption*{\scriptsize{
+            \href{https://scikit-learn.org/stable/modules/cross_validation.html}{scikit-learn
+              page}  }}
+      \end{figure}
+            
+      \column{0.55\linewidth}
+
+      \textbullet \: Time series data require special attention for training
+      machine learning models: (1) Auto-correlation; (2) Stationarity; (3)
+      Look-ahead bias.
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{kfolds2.png}
+        \caption*{\scriptsize{
+            \href{https://towardsdatascience.com/time-series-nested-cross-validation-76adba623eb9}{towards
+              data science}
+        }}
+      \end{figure}
+      
+    \end{columns}
+    
+  }
+      
+\end{frame}
+
+%%%%%%%%%% Slide 24 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Time Series Decomposition
+  }}} 
+    
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.925\textheight, keepaspectratio]
+                    {ndvi_gimms_anomaly_calculation_pt.jpg} 
+  \end{figure}
+  
+\end{frame}
+
+%%%%%%%%%% Slide 25 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Empirical Orthogonal Functions
+  }}} 
+
+  \scriptsize{
+    
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \textbullet \: Method of finding structures (modes) that explain maximum
+      variance in two-dimensional data sets (space-time).
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.625\linewidth, keepaspectratio]{eof.jpg}
+      \end{figure}
+      
+      \textbullet \: \textbf{Orthogonal Modes}: Descending order in variance
+      explanation. 
+      
+      \textbullet \: \textbf{EOFs} are spatial patterns and \textbf{PCs} are
+      time behavior of these patterns. 
+
+      \textbullet \: \textcolor{red}{Not necessarily physical modes!}
+      $$
+      \vec{F}(\vec{x}, t) = \sum_{k=1}^{N} PC_{k}(t) \cdot \vec{EOF}_k(\vec{x})
+      $$
+      
+      \column{0.55\linewidth}
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[height=0.425\textheight, keepaspectratio]
+                        {trmm_eofs.png}\\
+        \includegraphics[height=0.40\textheight, keepaspectratio]
+                        {trmm_eofs2.png}        
+        \caption*{\scriptsize{
+            Precipitation 2-EOFs.
+        }}
+      \end{figure}
+      
+    \end{columns}
+  }    
+  
+\end{frame}
+
+%%%%%%%%%% Slide 26 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        K-Means Clustering Algorithm
+  }}} 
+
+  \scriptsize{
+  
+  \textbullet \: Cost function:
+  $$
+  C = \sum\limits_{k=1}^{K}\sum\limits_{n=1}^{N}r_{nk} || \bm{x}_n - \bm{\mu}_k ||^2
+  $$
+
+  \textbullet \: Two-step algorithm:
+  $$
+  \text{Expectation: \:} \bm{\mu}_k = \frac{1}{N_k} \sum\limits_{n=1}^{N_k}
+  r_{nk} \bm{x}_n \hspace{0.25cm} \text{Maximization: \:} 
+  r_{nk} = \begin{cases}
+    1, & \text{if } k = \text{arg min}_{k'} || \bm{x}_n - \bm{\mu}_{k'} ||^2 \\
+    0, & \text{otherwise}
+  \end{cases}
+  $$
+  
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.45\textheight, keepaspectratio]{kmeans.png} 
+    \caption*{\scriptsize{
+        \href{https://github.com/MihailaDumitru/K-Means_Clustering/blob/master/README.md}{What
+        K-Means does for you.}
+    }}
+  \end{figure}  
+
+}
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Causality and Proposed Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 27 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Causal Sufficiency
+  }}} 
+
+  \vspace{0.25cm}
+  
+  \scriptsize{
+    
+    \textbullet \: A direct causal relation becomes indirect when an additional
+    variable is included \citapu{Decubber}{2017}. 
+    
+    \begin{figure}[!h]
+      \centering
+      \begin{tikzpicture}[
+          > = stealth, % arrow head style
+          shorten > = 1pt, % don't touch arrow head to node
+          auto,
+          align = center,
+          text width = 1.25cm, 
+          node distance = 2cm, % distance between nodes
+          semithick % line style
+        ]
+    
+        \tikzstyle{every state}=[
+          draw = black,
+          thick,
+          fill = white,
+          minimum size = 1cm
+        ]
+        
+        \node[state, double=red](v1){\tiny{\textbf{Cloud cover} \\ (y/n)}};
+        \node[state, double=red](v2)[right of=v1]{\tiny{\textbf{Flood} \\ (y/n)}};
+        \path[->](v1) edge node {} (v2);
+
+        \begin{scope}[xshift=5cm]
+          
+          \node[state](A){\tiny{\textbf{Cloud cover} \\ (y/n)}};
+          \node[state](B)[right of=A]{\tiny{\textbf{Rain} \\ (y/n)}};
+          \node[state](C)[right of=B]{\tiny{\textbf{Flood} \\ (y/n)}};
+          \path[->](A) edge node {} (B);
+          \path[->](B) edge node {} (C);
+          
+        \end{scope}
+        
+      \end{tikzpicture}
+
+    \end{figure}
+
+    \textbullet \: Causal relations disappear when a hidden common cause is
+    introduced in the study \citapu{Decubber}{2017}.
+    
+    \begin{figure}[!h]
+      \centering
+      \begin{tikzpicture}[
+          > = stealth, % arrow head style
+          shorten > = 1pt, % don't touch arrow head to node
+          auto,
+          align = center,
+          text width = 1.25cm, 
+          node distance = 2.10cm, % distance between nodes
+          semithick % line style
+        ]
+    
+        \tikzstyle{every state}=[
+          draw = black,
+          thick,
+          fill = white,
+          minimum size = 1cm
+        ]
+        
+        \node[state, double=red](A){\tiny{\textbf{Rain} \\ (y/n)}};
+        \node[state, double=red](B)[right of=v1]{\tiny{\textbf{UV} \\ (y/n)}};
+        \path[->](A) edge node {} (B);
+        \path[->](B) edge node {} (A);
+        
+        \begin{scope}[xshift=5cm]
+          
+          \node[state](v1){\tiny{\textbf{Cloud cover} \\ (y/n)}};
+          \node[state](v2)[below left of=v1]{\tiny{\textbf{Rain} \\ (y/n)}};
+          \node[state](v3)[below right of=v1]{\tiny{\textbf{UV} \\ (y/n)}};
+          \path[->](v1) edge node {} (v2);
+          \path[->](v1) edge node {} (v3);
+          
+        \end{scope}
+        
+      \end{tikzpicture}
+    \end{figure}
+
+  }
+
+\end{frame}
+
+%%%%%%%%%% Slide 28 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Linear Granger Causality
+  }}}
+
+  \scriptsize{
+
+    \begin{quote}
+      For two simultaneously measured signals, if we can predict the first
+      signal better by using the past information from the second one than by
+      using the information without it, then we call the second signal causal to
+      the first one ($X \rightarrow Y$)
+    \end{quote}
+    
+    \textbullet \: Two time series $X_t$ and $Y_t$, ($P$ is the window size):
+    $$
+    y_t= f_1(\underbrace{y_{t-1}, y_{t-2}, ..., y_{t-P}}_{\text{target past}})
+    $$
+
+    $$
+    y_t = f_2(\underbrace{y_{t-1}, y_{t-2}, ..., y_{t-P}}_{\text{target past}},
+    \underbrace{x_{t-1}, x_{t-2}, ..., x_{t-P}}_{\text{aux past}})
+    $$
+
+    \textbullet \: Three or more time series $X_t$, $Y_t$, $W_t$, ...:
+    $$
+    y_t= f_1(\underbrace{y_{t-1}, y_{t-2}, ..., y_{t-P}}_{\text{target past}},
+    \underbrace{w_{t-1}, w_{t-2}, ..., w_{t-P}}_{\text{\textcolor{red}{confounding}}})
+    $$
+
+    $$
+    y_t = f_2(\underbrace{y_{t-1}, y_{t-2}, ..., y_{t-P}}_{\text{target past}},
+    \underbrace{x_{t-1}, x_{t-2}, ..., x_{t-P}}_{\text{aux past}},
+    \underbrace{w_{t-1}, w_{t-2}, ..., w_{t-P}}_{\text{\textcolor{red}{confounding}}})
+    $$    
+    
+  }
+ 
+\end{frame}
+
+%%%%%%%%%% Slide 29 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Nonlinear Extension of Granger Causality
+  }}}
+
+  \scriptsize{
+
+    \vspace{0.20cm}
+    
+    \textbullet \: \citat{Papagiannopoulou}{2017a} present a novel non-linear framework
+      consisting of several components, such as \textbf{(1)} data collection
+      from various databases, \textbf{(2)} time series decomposition techniques,
+      \textbf{(3)} feature construction methods, and \textbf{(4)} predictive
+      modelling by means of random forests.
+ 
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.75\linewidth, keepaspectratio]{cg.png}
+      \caption*{\scriptsize{
+          Climatic and environmental factors controlling vegetation dynamics.
+      }}
+      \end{figure}
+
+    \textbullet \: \textbf{\textcolor{red}{Possible methodological
+        improvements:}} \textbf{(1)} Systematic hyperparameter search to avoid
+    overfitting. RFs $\rightarrow$ LSTMs; \textbf{(2)} Avoid look-ahead bias;
+    \textbf{(3)} Add more variables and avoid duplicated ones; \textbf{(4)}
+    Curse of dimensionality; \textbf{(5)} Include stationarity requirements for
+    predictors;
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 30 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Presentation Structure
+  }}}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Results}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \tableofcontents[currentsection] 
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{(R1) Normalized Vegetation Difference Index}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 31 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R1) Summary Statistics of Vegetation
+  }}}
+
+  \scriptsize{
+  
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.49\linewidth, keepaspectratio]
+                      {ndvi_gimms_mean_ori_pt.jpg}
+      \includegraphics[width=0.49\linewidth, keepaspectratio]
+                      {ndvi_gimms_std_ori_pt.jpg}                    
+    \end{figure}  
+    
+    \textbullet \: \textbf{Highlights:} (1) Predominant greening of Amazon; (2) Eastern
+    Rondônia; (3) Arc of Deforestation; (4) Northeast of Brazil.
+
+  }
+    
+\end{frame}
+
+%%%%%%%%%% Slide 32 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R1) Seasonality of Vegetation and Precipitation
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: \textbf{Highlights:} (1) Greenest Amazon in JJA; (2) Brownest
+    in DJF; (3) Precipitation does not seem to correlate for most of Amazon; (4)
+    Probably driven by radiation.
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.925\linewidth, keepaspectratio]
+                      {ndvi_gimms_smeans_pt.jpg}
+      \includegraphics[width=0.925\linewidth, keepaspectratio]
+                      {precipitation_trmm_smeans_pt.jpg}                       
+      \caption*{\scriptsize{
+          TRMM 3B42 product, 1988 to 2017 \citap{Huffman}{2007}.
+      }}
+    \end{figure}
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 33 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R1) Linear Trends for Vegetation
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: \textbf{Highlights:} (1) South America is becoming greener;
+    (2) Most trendy regions does not show pronounced signal; (3) Eastern
+    Rondônia; (4) Arc of deforestation.
+    
+    \begin{columns}
+      \column{0.57\linewidth}
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]
+                        {ndvi_gimms_trends_ori.jpg}                       
+      \end{figure}  
+      
+      \column{0.57\linewidth}
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.80\linewidth, keepaspectratio]
+                        {ndvi_gimms_trends_ori_hist.jpg}
+        \includegraphics[width=\linewidth, keepaspectratio]
+                        {ndvi_gimms_trends_ori_tss.jpg}                          
+      \end{figure}  
+      
+    \end{columns}    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 34 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R1) Empirical Orthogonal Functions for Vegetation
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: \textbf{Highlights:} (1) The first two modes explain less
+    than half; (2) First spatial pattern looks like to separate radiation and
+    water limited areas; (3) Northeast of Brazil (Zona da Mata - Agreste e
+    Sertão); (4) Eastern Rondônia; (5) Latitudinal pattern in second mode
+    (Capricorn and Equator).
+    
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \begin{figure}[h!]
+        \includegraphics[width=\linewidth, keepaspectratio]
+                        {ndvi_gimms_modes_spatial.jpg}                    
+      \end{figure}  
+      
+      \column{0.55\linewidth}
+
+      \begin{figure}[h!]
+        \includegraphics[width=\linewidth, keepaspectratio]
+                        {ndvi_gimms_modes_temporal.jpg}                    
+      \end{figure}        
+
+    \end{columns}
+
+    \begin{figure}[h!]
+      \includegraphics[width=0.70\linewidth, keepaspectratio]
+                      {ndvi_gimms_modes_variances.jpg}  
+    \end{figure}
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 35 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R1) Vegetation Clustering by K-Means
+  }}}
+
+  \scriptsize{
+    
+    \textbullet \: \textbf{Highlights:} (1) Elbow curve and silhouettes; (2)
+    Have found 9 vegetation clusters; (3) Amazonia is represented by cluster
+    numbers 3, 4, 5, and 6; (4) Mean time series for have different
+    characteristics for each cluster.
+  
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.95\textwidth, keepaspectratio]
+                        {ndvi_gimms_clustering_scaled_map.jpg}                      
+      \end{figure}
+    
+      \column{0.55\linewidth}
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\textwidth, keepaspectratio]
+                        {ndvi_gimms_clustering_scaled_pt.jpg}          
+        \includegraphics[width=\textwidth, keepaspectratio]
+                        {ndvi_gimms_clustering_scaled_time_series.jpg}
+      \end{figure}   
+    
+  \end{columns}
+  
+  }
+\end{frame}
+
+%%%%%%%%%% Slide 36 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R1) Vegetation Clustering by K-Means
+  }}}
+
+  \scriptsize{
+    
+    \textbullet \: \textbf{Highlights:} (1) Need for counting coincidences of
+    these two approaches: 9 clusters x 14 land cover classes. (2) Difficulties:
+    regrid categorical data? IGBP is for 1992-1993.
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=1.05\textwidth, keepaspectratio]
+                      {clustering_ndvi_land_cover.png}          
+    \end{figure}       
+  }
+    
+\end{frame}
+
+%%%%%%%%%% Slide 37 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R1) Conclusions for Vegetation Analysis
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: Amazonia has predominant greening along the year. Deforested
+    areas present lower mean values (Rondônia and Arc of deforestation). Greener
+    on JJA and browner on DJF. \\[0.15cm]
+
+    \textbullet \: South America is becoming greener, but not so
+    much. \\[0.15cm]
+
+    \textbullet \: First EOF seems to separate radiation and water limited
+    areas. Second EOF has a latitudinal pattern that we do not
+    understood. \\[0.15cm]
+
+    \textbullet \: We have found 9 vegetation clusters. We need to further
+    evaluate if these clusters match land cover types. \\[0.15cm]
+    
+  }
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{(R2) Initial Investigations of Climate and Vegetation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 38 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R2) Observed Climate and Vegetation for Manaus
+  }}}
+    
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.85\textheight, keepaspectratio] 
+                    {time_series_manaus_pt.jpg} 
+    \includegraphics[height=0.85\textheight, keepaspectratio]
+                    {pair_plots_manaus_pt.jpg}
+    \end{figure}        
+    
+\end{frame}
+
+%%%%%%%%%% Slide 39 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R2) Observed Climate and Vegetation for Manaus
+  }}}
+  
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth, keepaspectratio]
+                    {time_series_manaus_pt_zoom.jpg} \\
+    \includegraphics[width=\textwidth, keepaspectratio]
+                    {pair_plots_manaus_pt_zoom.jpg}                 
+  \end{figure}        
+    
+\end{frame}
+
+
+%%%%%%%%%% Slide 40 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R2) Spearman's Rank Correlation Coefficient
+  }}} 
+
+  \begin{columns}
+    \column{0.55\linewidth}  
+  
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.85\textheight, keepaspectratio]
+                        {ndvi_climate_spearman_pt.jpg}                    
+    \end{figure}   
+
+    \column{0.55\linewidth}
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.85\textheight, keepaspectratio]
+                      {ndvi_climate_spearman_ano_pt.jpg}                 
+    \end{figure}   
+    
+  \end{columns}
+  
+\end{frame}
+
+%%%%%%%%%% Slide 41 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R2) Spearman's Rank Coefficient - Observed Data
+  }}} 
+  
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.49\textwidth, keepaspectratio]
+                    {ndvi_climate_spearman_pt_ssr.jpg}
+    \includegraphics[width=0.49\textwidth, keepaspectratio]
+                    {ndvi_climate_spearman_pt_tp.jpg} \\
+    \end{figure}   
+  
+\end{frame}
+
+%%%%%%%%%% Slide 42 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R2) Spearman's Rank Coefficient - Anomalies
+  }}} 
+  
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.49\textwidth, keepaspectratio]
+                    {ndvi_climate_spearman_ano_pt_ssr.jpg}
+    \includegraphics[width=0.49\textwidth, keepaspectratio]
+                    {ndvi_climate_spearman_ano_pt_tp.jpg} \\
+    \end{figure}   
+  
+\end{frame}
+
+%%%%%%%%%% Slide 43 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R2) Dimensionality Reduction and Clustering
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: \textbf{Highlights:} (1) Testing simple application of
+    principal component analysis PCA followed by K-Means clustering; (2) These
+    clusters can be a clue of the linear interactions between vegetation and
+    climate; (3) A possible approach is to use an auto encoder neural network
+    for non linear rediction; (4) Need for systematic selection of climate
+    variables. 
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.495\textwidth, keepaspectratio]
+                      {ndvi_climate_pca1_pt.jpg}
+      \includegraphics[width=0.495\textwidth, keepaspectratio]
+                      {ndvi_climate_kmeans_pt.jpg}                     
+    \end{figure}
+    
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 44 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R2) Conclusions for Climate and Vegetation Analysis
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: It seems to be hard to model vegetation response to climate
+    variables, specially if we use anomalies instead of observed data. \\[0.15cm]
+
+    \textbullet \: Amazonia vegetation is anti-correlated with all the selected
+    climate and surface variables. \\[0.15cm] 
+
+    \textbullet \: North Amazonia vegetation does not have statistical
+    significance in correlations with the predictors. \\[0.15cm]
+    
+    \textbullet \: We must build more features and or select another
+    variables/datasets in order to seek for more predictive power. 
+    
+  }
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{(R3) Moisture Flux}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 45 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R3) Climatological Trajectories of Humid Air
+  }}}
+  
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.925\textheight, keepaspectratio]
+                    {specific_humidity_and_moisture_flux_erainterim_mmeans_tra_pt.jpg} 
+  \end{figure}    
+  
+\end{frame}
+
+%%%%%%%%%% Slide 46%%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R3) Water Variables along Climatological Trajectories (DJF)
+  }}}
+  
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.925\textwidth, keepaspectratio]
+                    {trajectories_rainy.png} 
+  \end{figure}    
+  
+\end{frame}
+
+%%%%%%%%%% Slide 47 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        (R3) Conclusions for Humid Trajectories
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: These trajectories show pronounced seasonality. \\[0.15cm]
+    
+    \textbullet \: Some of them fly over densely vegetated regions in Amazonia,
+    while others go over less vegetation in Cerrado. \\[0.15cm]
+
+    \textbullet \: This difference can be used to study the influence of
+    vegetation in some atmospheric variables. \\[0.15cm]
+   
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 48 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Presentation Structure
+  }}}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Final Considerations}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \tableofcontents[currentsection] 
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preliminary Conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 49 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Preliminary Conclusions
+  }}}
+
+  \scriptsize{
+    
+    \textbullet \: (R1) Normalized Vegetation Difference Index:
+
+    \begin{enumerate}
+      
+    \item South America is becoming greener, but not so much.
+      
+    \item We have found 9 vegetation clusters. We need to further evaluate if
+      these clusters match land cover types.
+      
+    \end{enumerate}
+      
+    \textbullet \: (R2) Initial Investigations of Climate and Vegetation:
+
+    \begin{enumerate}
+
+    \item Amazonia vegetation is anti-correlated with all the selected climate
+      and surface variables.
+      
+    \item North Amazonia vegetation does not have statistical significance in
+      correlations with the predictors.
+
+    \item It seems hard to model vegetation response to climate variables,
+      specially if we use anomalies instead of observed data.
+      
+    \end{enumerate}
+    
+    \textbullet \: (R3) Moisture Flux:
+
+    \begin{enumerate}
+
+    \item These trajectories show pronounced seasonality.
+    
+    \item Some of them fly over densely vegetated regions in Amazonia,
+    while others go over less vegetation in Cerrado. 
+
+    \item This difference can be used to study the influence of
+    vegetation in some atmospheric variables.
+      
+    \end{enumerate}
+  }
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Future Work}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 50 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Future Work
+  }}}
+
+  \scriptsize{
+    
+    \textbullet \: (R1) Normalized Vegetation Difference Index:
+
+    \begin{enumerate}
+
+    \item We are reviewing literature and searching for physical
+      interpretations.
+
+    \item These results have potential for publication.
+      
+    \end{enumerate}
+      
+    \textbullet \: (R2) Initial Investigations of Climate and Vegetation:
+
+    \begin{enumerate}
+
+    \item We are working on predictive models (RFs, LSTMs) and the related
+      methodology in order to estimate  causality of climate variables on
+      vegetation. 
+      
+    \item Work on dimensionality reduction + clusterization in order to find
+      vegetation-climate regimes. 
+      
+    \item These results have potential for publication.      
+      
+    \end{enumerate}
+    
+    \textbullet \: (R3) Moisture Flux:
+
+    \begin{enumerate}
+
+    \item The trajectories can be thought as time series.
+      
+    \item Possibility to study the reverse causal influence of vegetation on
+      some atmospheric variables.
+
+    \item These possible results has potential for publication.
+      
+    \end{enumerate}
+  }
+  
+\end{frame}
+
+%%%%%%%%%% Slide 51 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{The End}}}
+
+  \section{}
+  \begin{center}
+    \huge{Thank You !}
+  \end{center}
+
+\end{frame}
+
+% Hidden slides from now on.
+\appendix
+
+%%%%%%%%%% Slide XX %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Presentation Structure
+  }}}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Hidden Material}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \tableofcontents[currentsection] 
+  
+\end{frame}
+
+\subsection{}
+\begin{thebibliography}{99}
+  
+  %%%%%%%%%% Slide XX %%%%%%%%%%%
+  \begin{frame}
+    \frametitle{\normalsize{\textbf{
+          Bibliography 
+    }}}
+
+    \scriptsize{
+      
+    \bibitem{}
+      P. A. Dirmeyer, P. Gentine, M. B. Ek, G. Balsamo, “Land surface processes
+      relevant to sub-seasonal to seasonal (S2S) prediction” in Sub-Seasonal to
+      Seasonal Prediction, A. W. Robertson, F. Vitart, Eds. (Elsevier, 2019),
+      pp. 165–181.
+
+    \bibitem{}
+      Overpeck, J. T., Meehl, G. A., Bony, S., and Easterling,
+      D. R. (2011). Climate data challenges in the 21st century. science,
+      331(6018):700–702.
+      
+    \bibitem{}
+      Reichstein, M., Camps-Valls, G., Stevens, B., Jung, M., Denzler, J.,
+      Carvalhais, N., et al. (2019). Deep learning and process understanding for
+      data-driven earth system science. Nature, 566(7743):195.
+      
+    \bibitem{}
+      Runge, J., Bathiany, S., Bollt, E., Camps-Valls, G., Coumou, D., Deyle,
+      E., Glymour, C., Kretschmer, M., Mahecha, M. D., Muñoz-Marí, J., et
+      al. (2019a). Inferring causation from time series in earth system
+      sciences. Nature communications, 10(1):2553. 
+
+    \bibitem{}
+      Loveland, T., J. Brown, D. Ohlen, B. Reed, Z. Zhu, L. Yang, and S. Howard
+      . 2009.ISLSCP II IGBP DISCover and SiB Land Cover, 1992-1993. In Hall,
+      Forrest G., G. Collatz, B. Meeson, S. Los, E. Brown de Colstoun, and
+      D. Landis (eds.). ISLSCP Initiative II Collection. Data set. Available
+      on-line [http://daac.ornl.gov/] from Oak Ridge National Laboratory
+      Distributed Active Archive Center, Oak Ridge, Tennessee,
+      U.S.A. doi:10.3334/ORNLDAAC/930 
+
+    } 
+
+  \end{frame}
+
+  %%%%%%%%%% Slide XX %%%%%%%%%%%  
+  \begin{frame}
+    \frametitle{\normalsize{\textbf{
+          Bibliography 
+    }}}
+
+    \scriptsize{
+      
+    \bibitem{}
+      Pinzon, J. and Tucker, C. (2014). A non-stationary 1981–2012 avhrr ndvi3g
+      time series. Remote Sensing, 6(8):6929–6960. 
+
+    \bibitem{}
+      Dee, D. P., Uppala, S. M., Simmons, A., Berrisford, P., Poli, P.,
+      Kobayashi, S., Andrae, U., Balmaseda, M., Balsamo, G., Bauer, d. P., et
+      al. (2011). The era-interim rea- nalysis: Configuration and performance of
+      the data assimilation system. Quarterly Journal of the royal
+      meteorological society, 137(656):553–597.
+      
+    \bibitem{}
+      Chollet, F. et al. (2018). Keras: The python deep learning
+      library. Astrophysics Source Code Library.
+      
+    \bibitem{}
+      Mehta, P., Bukov, M., Wang, C.-H., Day, A. G., Richardson, C., Fisher,
+      C. K., and Schwab, D. J. (2019). A high-bias, low-variance introduction to
+      machine learning for physicists. Physics reports.
+
+    \bibitem{}
+      Géron, A. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and
+      TensorFlow: Concepts, Tools, and Techniques to Build Intelligent
+      Systems. O’Reilly Media.
+      
+    } 
+
+  \end{frame}
+
+  %%%%%%%%%% Slide XX %%%%%%%%%%%  
+  \begin{frame}
+    \frametitle{\normalsize{\textbf{
+          Bibliography 
+    }}}
+
+    \scriptsize{
+      
+    \bibitem{}
+      Olah, C. (2015). Understanding lstm networks. Available at
+      \url{https://colah.github.io/posts/2015-08-Understanding-LSTMs/}. Accessed
+      15 Jan 2020.
+      
+    \bibitem{}
+      Decubber, S. (2017). Spatiotemporal optimization of granger causality
+      methods for climate change attribution. Master’s thesis, Department of
+      Applied Mathematics, Computer Science and Statistics of Faculty of
+      Sciences, Ghent University. 
+      
+    \bibitem{}
+      Papagiannopoulou, C., Gonzalez Miralles, D., Decubber, S., Demuzere, M.,
+      Verhoest, N., Dorigo, W. A., and Waegeman, W. (2017a). A non-linear
+      granger-causality framework to investigate climate-vegetation
+      dynamics. Geoscientific Model Development, 10(5):1945–1960. 
+ 
+    \bibitem{}
+      Papagiannopoulou, C., Miralles, D. G., Dorigo, W. A., Verhoest, N. E. C.,
+      Depoorter, M., and Waegeman, W.: Vegetation anomalies caused by antecedent
+      precipitation in most of the world, Environ. Res. Lett.,
+      doi:10.1088/1748-9326/aa7145, 2017b. 
+
+    \bibitem{}
+      Huffman, G. J., Bolvin, D. T., Nelkin, E. J., Wolff, D. B., Adler, R. F.,
+      Gu, G., Hong, Y., Bowman, K. P., and Stocker, E. F. (2007). The trmm
+      multisatellite precipitation analysis (tmpa): Quasi-global, multiyear,
+      combined-sensor precipitation estimates at fine scales. Journal of
+      hydrometeorology, 8(1):38–55.
+      
+    } 
+
+  \end{frame}
+
+  %%%%%%%%%% Slide XX %%%%%%%%%%%  
+  \begin{frame}
+    \frametitle{\normalsize{\textbf{
+          Bibliography 
+    }}}
+
+    \scriptsize{
+      
+    \bibitem{}
+      Knüsel, B., Zumwald, M., Baumberger, C., Hadorn, G. H., Fischer, E. M.,
+      Bresch, D. N., and Knutti, R. (2019). Applying big data beyond small
+      problems in climate research. Nature Climate Change, 9(3):196.
+
+    \bibitem{}
+      Nobre, C (2004). Interações entre clima e vegetação na Amazônia: do último
+      período glacial até o clima do futuro. III Conferência científica do LBA.
+      
+    }
+    
+  \end{frame}
+  
+\end{thebibliography}
+
+%%%%%%%%%% Slide XX %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Data Sources in Detail
+  }}} 
+    
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.925\textheight, keepaspectratio]{erainterim2.png} 
+  \end{figure}
+  
+\end{frame}
+
+%%%%%%%%%% Slide XX %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+       Supervised Learning
+  }}} 
+
+  \scriptsize{
+
+    \begin{columns}
+      \column{0.55\linewidth}
+      
+      \textbf{1)} Discovery of mapping from input observations to known output
+      observations: 
+
+      $$y = f(X) + \varepsilon $$
+
+      \textbf{2)} Data coming from this function:
+
+      $$\mathcal{D} = (X_i, y_i); \: \: i=1, 2, 3, ..., N$$
+
+      \textbf{3)} Candidate function $g(\theta)$ for best approximating $f(x)$,
+      where parameters $\theta$ must be found through \emph{learning}.
+
+      $$
+      g(\theta) \: \text{is my model}
+      $$
+
+      \textbf{4)} Split data into \textcolor{red}{train},
+      \textcolor{green}{validation}, and \textcolor{blue}{test}. \\[0.075cm]
+
+      \textbf{5)} Choose a cost function $C(\mathcal{D}, g(\theta))$ that
+      allows us to judge how well the model explains the observations. \\
+
+      \column{0.55\linewidth}
+      
+      \textbf{6)} The model is fit by finding the values of $\theta$ that
+      minimizes the cost function on \textcolor{red}{train} data. \\[0.01cm]
+
+      \textbf{7)} Search for \textbf{hyperparameters} using
+      \textcolor{green}{validation} data. \\[0.01cm]
+
+      \textbf{8)} Final evaluation of \textbf{model} using
+      \textcolor{blue}{test} data.
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.95\textwidth, keepaspectratio]{schematic.png} 
+        \caption*{\scriptsize{
+            \citat{Mehta}{2019}
+        }}
+    \end{figure}
+    
+    \end{columns}
+    
+  }
+    
+\end{frame}
+
+%%%%%%%%%% Slide XX %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+       Vegetation Clustering by K-Means
+  }}}
+  
+    \begin{columns}
+      \column{0.55\linewidth}
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.95\textwidth, keepaspectratio]
+                        {ndvi_gimms_clustering_scaled_map.jpg}                      
+      \end{figure}
+    
+      \column{0.55\linewidth}
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.95\textwidth, keepaspectratio]
+                        {ndvi_gimms_clustering_scaled_pt.jpg}          
+        \includegraphics[width=0.95\textwidth, keepaspectratio]
+                        {ndvi_gimms_clustering_scaled_time_series.jpg}
+      \includegraphics[width=0.95\textwidth, keepaspectratio]
+                    {ndvi_gimms_clustering_scaled_boxplot.jpg}    
+    \end{figure}   
+    
+  \end{columns}
+ 
+\end{frame}
+
+%%%%%%%%%% Slide XX %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Predictive Modelling with Random Forests
+  }}}
+
+  \scriptsize{
+
+    \textbullet \: \textbf{Highlights:} (1) Select a region in South Amazonia
+    (7200 NDVI time series); (2) Use mean of that; (3) Fitting 5 folds for each
+    of 180 candidates, totalling 900 fits; (4) 9 min on 4 cpus; (5) Overfitting.
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.70\textwidth, keepaspectratio]
+                      {rf_ndvi.png}
+      \includegraphics[width=0.29\textwidth, keepaspectratio]
+                      {kfolds2.png}                        
+      \includegraphics[width=0.35\textwidth, keepaspectratio]
+                      {rf_ndvi2.png}  
+      \includegraphics[width=0.35\textwidth, keepaspectratio]
+                      {rf_ndvi3.png}                                     
+    \end{figure}   
+  }
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
