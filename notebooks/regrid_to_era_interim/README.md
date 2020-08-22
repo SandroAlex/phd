@@ -1,8 +1,10 @@
-# Overview
+# Description
 
-Python notebooks.
+## Overview
 
-# Better visualization
+Spatial regrid are done inside these python jupyter notebooks for atmospheric and surface variables coming from different sources. The results are data with original time resolution and 0.75x0.75° resolution for spatial grid, where this grid is compatible with the `0.75° ERA-INTERIM` one.
+
+## Better visualization
 
 - [air_temperature_merra2.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/regrid_to_era_interim/air_temperature_merra2.ipynb?flush_cache=true):
     - **Main ideas:**
