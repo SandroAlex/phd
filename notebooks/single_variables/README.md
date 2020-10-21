@@ -43,3 +43,11 @@ Python notebooks intended to explore and analyze atmospheric and surface variabl
     - Data from TRMM (TMPA) L3 Daily 0.25 x 0.25 degree (TRMM_3B42_Daily) 1998 - 2017.
     - Maps for monthly cumulative mean data.
     - Empirical orthogonal functions analysis.
+
+- [total_precipitation_era.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/total_precipitation_era.ipynb?flush_cache=true):
+    - **Key ideas:**
+        - Intensive operations that use a lot of RAM memory. Run this notebook inside one of cluster nodes of `aerossol` server.
+        - ERA_INTERIM total precipitation is a fully global historical precipitation dataset (`1979–2018` with `12-hour` temporal and `0.75°` spatial resolutions).
+        - Explore single `global` file.
+        - Explore all data available for `South America` resampled from `12-houy` to `daily`, `annual`, `semi-monthly`, and `monthly` sums: (1), time series, (2) monthly climatology, and (3) long term ordinary least square `OLS` trends of observed data.
+        - No evaluation of statistical significances for OLS trends.
