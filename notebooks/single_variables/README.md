@@ -13,13 +13,25 @@ Python notebooks intended to explore and analyze atmospheric and surface variabl
     - Visualizing the AOD 550 nm data from TERRA satellite.
 
 - [land_cover_modis.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/land_cover_modis.ipynb?flush_cache=true):
-    - **Main ideas:**
+    - **Key ideas:**
         - Land cover classes for South America using `MCD12C1 MODIS version 006` product.
-        - Spatial resolution is `0.05x0.05` degrees and we show the results for 2018.
-        - Data format is `HDF4`.
-        - We regrid data to the ERA-INTERIM `0.75x0.75°` grid for `South America` and export the results to a netcdf file.
+        - Data format is `HDF4` with spatial resolution of 0.05 x 0.05° and `annual` time steps from 2001 to 2019.
+        - We regrid land cover data to the GIMMS NDVI3g 1/12 x 1/12° grid for South America and export the results (2001-2019) to a netcdf file.
+        - Pixel-wise area calculation.
+        - Time evolution of land cover regridded data.
     - **References:**
         - [MODIS/Terra+Aqua Land Cover Type CMG Yearly L3 Global 0.05 Deg](https://lpdaac.usgs.gov/products/mcd12c1v006/).
+
+- [precipitation_mswep.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/precipitation_mswep.ipynb?flush_cache=true):
+    - **Key ideas:**
+        - Intensive operations that use a lot of RAM memory. Run this notebook inside `aerossol` server.
+        - Multi-Source Weighted-Ensemble Precipitation (MSWEP) is a fully global historical precipitation dataset (`1979–2017` with `daily` temporal and `0.1°` spatial resolutions).
+        - Explore single `global` file.
+        - Explore all data available for `South America` resampled from `daily` to `annual`, `semi-monthly`, and `monthly` sums: (1), time series, (2) mean and standard deviation for all time range, (3) monthly climatology, and (4) long term ordinary least square `OLS` trends of observed data.
+        - No evaluation of statistical significances for OLS trends.
+        - Regrid and export precipitation data in the same spatial and temporal grid of GIMMS NDVI 3g data set. 
+    - **References**
+        - [gloh2o: Toward Locally Relevant Global Hydrological Simulations](http://www.gloh2o.org/).
 
 - [precipitation_persiann_cdr_msum.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/precipitation_persiann_cdr_msum.ipynb?flush_cache=true):
     - **In this notebook you will find:**
