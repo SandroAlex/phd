@@ -22,6 +22,19 @@ Python notebooks intended to explore and analyze atmospheric and surface variabl
     - **References:**
         - [MODIS/Terra+Aqua Land Cover Type CMG Yearly L3 Global 0.05 Deg](https://lpdaac.usgs.gov/products/mcd12c1v006/).
 
+- [precipitation_chirps.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/precipitation_chirps.ipynb?flush_cache=true):
+    - **Key ideas:**
+        - Intensive operations that use a lot of RAM memory. Run this notebook inside aerossol server.
+        - Chirps is produced at 0.05 x 0.05 degree spatial resolution.
+        - Explore single global file.
+        - Maps for long term means and standard deviations of South American rainfall (1981 - 2015).
+        - Explore monotonic linear long term trends by means of ordinary least squares (OLS) of rainfall for South America in time range 1981 - 2015 without investigating statistical significance of these trends.
+        - Regrid and export precipitation data in the same spatial and temporal grid of GIMMS NDVI 3g data set.
+    - **References:**
+        - [CHIRPS FAQ](https://wiki.chc.ucsb.edu/CHIRPS_FAQ).
+        - [Paper: The climate hazards infrared precipitation with stations — a new environmental record for monitoring extremes](https://www.nature.com/articles/sdata201566).
+        - [Website: CHIRPS: Rainfall Estimates from Rain Gauge and Satellite Observations](https://www.chc.ucsb.edu/data/chirps).
+
 - [precipitation_mswep.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/precipitation_mswep.ipynb?flush_cache=true):
     - **Key ideas:**
         - Intensive operations that use a lot of RAM memory. Run this notebook inside `aerossol` server.
