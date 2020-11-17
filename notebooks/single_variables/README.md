@@ -12,6 +12,16 @@ Python notebooks intended to explore and analyze atmospheric and surface variabl
 - [aod_modis_terra_means.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/aod_modis_terra_means.ipynb?flush_cache=true):
     - Visualizing the AOD 550 nm data from TERRA satellite.
 
+- [elevation_globe.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/elevation_globe.ipynb?flush_cache=true):
+    - **Key ideas:**
+        - Intensive operations that use a lot of RAM memory. Run this notebook inside aerossol server.
+        - Description: NOAA NGDC GLOBE: Gridded 1-km, quality controlled global Digital Elevation Model (DEM) data from the Global Land One-km Base Elevation (GLOBE) Project.
+        - Explore South America topography.
+        - Regrid and export elevation data in the same spatial and temporal grid of GIMMS NDVI 3g data set for South America.
+        - Data distribution for NDVI and elevation.
+    - **References:**
+        - [Website](https://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NGDC/.GLOBE/).
+
 - [land_cover_modis.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/land_cover_modis.ipynb?flush_cache=true):
     - **Key ideas:**
         - Land cover classes for South America using `MCD12C1 MODIS version 006` product.
