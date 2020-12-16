@@ -34,6 +34,7 @@ Using machine learning to better understand biosphere-atmosphere interactions in
             - (21) `NDVI` Mean NDVI;
             - (22) `NDVI` Standard deviation of NDVI.
             - (23) `PAS` Protected areas.
+            - (24) `BIO` Biomes.
         - Preprocess numeric features separated from the categorical features. We do that by means of [sklearn.compose.ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer). We apply [sklearn.preprocessing.StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) to numeric features just for didactic purposes, even though this is not necessary for tree-based learning algorithms. The categorical features are transformed by [sklearn.preprocessing.OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html), not being scaled after that. 
         - Use Ridge Regression (RR) as a simple benchmark, optimized with exhaustive grid search over hyper parameters.
         - Use Gradient Boosted Regression Trees (XGBRT) from [XGBoost](https://xgboost.readthedocs.io/en/latest/python/python_api.html) ([Scikit-Learn API](https://xgboost.readthedocs.io/en/latest/python/python_api.html#module-xgboost.sklearn)) with Bayesian optimization over hyper parameters ([skopt.BayesSearchCV](https://scikit-optimize.github.io/stable/modules/generated/skopt.BayesSearchCV.html)). Export this trained model.
