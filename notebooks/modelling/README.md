@@ -6,6 +6,42 @@ Using machine learning to better understand biosphere-atmosphere interactions in
 
 ## Better visualization
 
+- [ndvi_trends_feature_engineering.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/modelling/ndvi_trends_feature_engineering.ipynb?flush_cache=true):
+    - **Key ideas:**
+        - **Computation:** Intensive calculations that require a lot of RAM memory, so run this notebook in aerossol server.
+        - **Target and raw features:** Engineer physical features for each grid point in South America in order to predict NDVI long term monotonic trends (decadal variation) using some machine learning model. More precisely, the initial features obtained here are the following: 
+            - (01) `LAT` Latitude; 
+            - (02) `LON` Longitude; 
+            - (03) `ELEV` Elevation; 
+            - (04) `LC` Land class for 2015;
+            - (05) `LC` Counts of annual land class changes from 2001 until 2015;
+            - (06) `P` Mean precipitation;
+            - (07) `P` Standard deviation of precipitation;
+            - (08) `P` Long term trends of precipitation;
+            - (09) `TMAX` Mean maximum 2-m temperature;
+            - (10) `TMAX`Standard deviation of maximum 2-m temperature;
+            - (11) `TMAX`Long term trends of maximum 2-m temperature;
+            - (12) `TMIN` Mean minimum 2-m temperature;
+            - (13) `TMIN` Standard deviation of minimum 2-m temperature;
+            - (14) `TMIN` Long term trends of minimum 2-m temperature;
+            - (15) `SRAD` Mean downward shortwave radiation flux at the surface;
+            - (16) `SRAD` Standard deviation of downward shortwave radiation flux at the surface;
+            - (17) `SRAD` Long term trends of downward shortwave radiation flux at the surface;
+            - (18) `PDSI` Mean Palmer drought severity index;
+            - (19) `PDSI` Standard deviation of Palmer drought severity index;
+            - (20) `PDSI` Long term trends of Palmer drought severity index;
+            - (21) `NDVI` Mean NDVI;
+            - (22) `NDVI` Standard deviation of NDVI.
+            - (23) `PAS` Protected areas.
+            - (24) `BIO` Biomes.
+        - **Export data matrix:**  Put all those features along with target in a pandas DataFrame object and export it as a csv file.  
+        - **Exploratory data analysis:** Unveil relations between these features and target: (1) NDVI trend by land class in 2015 and land class annual variations over 2001 - 2015 period and (2) bi-histograms for remaining features versus target.
+        - **Preprocessing of raw features**: (1) One hot encoding for the two categorical features, namely land class for each pixel in 2015 and whether the grid point belongs to a protected area or not, (2) robust scaling of all data, including the one-hot-encoded features, (3) linear dimensionality reduction by means of PCA, and (4) Yeo-Johnson power transform to principal components in order to make the resulting data distribution more Gaussian.
+        - **Preprocessing evaluation:** Quick performance comparison between a SVM model trained on raw features (just with one hot encoding) and a SVM model having as input   the preprocessed features as explained above.  
+    - **Notes:**  
+        - For tree-based models, which are the one we normally use the most, it is not necessary to scale data, but we do it here just for didactic purposes.
+        - Since each instance (a row in data matrix) represents a pixel, there is no need to train a model along time axis. However, spatial autocorrelation still might be a problem when training and evaluating models.
+
 - [ndvi_trends_gbrt_xgboost.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/modelling/ndvi_trends_gbrt_xgboost.ipynb?flush_cache=true):
     - **Key ideas:**
         - Learning some cool things. Just a test!
