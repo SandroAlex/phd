@@ -32,7 +32,7 @@ Python notebooks intended to explore and analyze atmospheric and surface variabl
     - **References:**
         - [MODIS/Terra+Aqua Land Cover Type CMG Yearly L3 Global 0.05 Deg](https://lpdaac.usgs.gov/products/mcd12c1v006/).
 
-- [ndvi_gimms_ts_trends_dask_experiment.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/ndvi_gimms_ts_trends_dask_experiment?flush_cache=true):
+- [ndvi_gimms_ts_trends_dask_experiment.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/ndvi_gimms_ts_trends_dask_experiment.ipynb?flush_cache=true):
     - **Key ideas:** 
         - Learning how to use [dask](https://docs.dask.org/en/latest/) with [xarray](http://xarray.pydata.org/en/stable/) for climate data (vegetation, actually).
         - This notebook is a dask experiment for better performance when computing Theil-Sen slopes for GIMMS NDVI scaled data in South America.
