@@ -6,6 +6,40 @@ In these python jupyter notebooks we use more than one climatic and/or surface v
 
 ## Better visualization of notebooks  
 
+- [notable_regions_amazonia.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/multiple_variables/notable_regions_amazonia.ipynb?flush_cache=true).
+    - **Key ideas:**
+        - Vegetation indexes for Amazonia coming from AVHRR (NDVI) and MODIS (NDVI, EVI).
+        - Precipitation data from CHIRPS.
+        - AVHRR (NDVI): 15-day time step, from 07-1981 to 12-2015; 1/12° x 1/12° (8 km x 8 km) spatial resolution. 
+        - MODIS (NDVI, EVI): monthly time step, from 02-2000 to 01-2021; 0.05° x 0.05° (5 km x 5 km) spatial resolution.
+        - CHIRPS (Precipitation): Same spatiotemporal grid as the AVHRR's one.
+        - Can precipitation explain the differences in vegetation trends between human perturbed and pristine regions? Answer: No, apparently. 
+    - **References:**
+        - [Climate Data Guide: NDVI: NORMALIZED-DIFFERENCE-VEGETATION-INDEX: NOAA AVHRR](https://climatedataguide.ucar.edu/climate-data/ndvi-normalized-difference-vegetation-index-noaa-avhrr).
+        - [Website: MOD13C2 v006 MODIS/Terra Vegetation Indices Monthly L3 Global 0.05 Deg CMG](https://lpdaac.usgs.gov/products/mod13c2v006/).
+        - [CHIRPS: Rainfall Estimates from Rain Gauge and Satellite Observations](https://www.chc.ucsb.edu/data/chirps).
+        - Atkinson, P., Dash, J., and Jeganathan, C. (2011). [Amazon vegetation greenness as measured by satellite sensors over the last decade](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011GL049118). Geophysical Research Letters, 38(19).
+
+- [notable_regions_argentina.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/multiple_variables/notable_regions_argentina.ipynb?flush_cache=true).
+    - **Key ideas:**
+        - Vegetation indexes for Argentina coming from AVHRR (NDVI) and MODIS (NDVI, EVI).
+        - Precipitation data from CHIRPS.
+        - AVHRR (NDVI): 15-day time step, from 07-1981 to 12-2015; 1/12° x 1/12° (8 km x 8 km) spatial resolution. 
+        - MODIS (NDVI, EVI): monthly time step, from 02-2000 to 01-2021; 0.05° x 0.05° (5 km x 5 km) spatial resolution.
+        - CHIRPS (Precipitation): Same spatiotemporal grid as the AVHRR's one.
+        - Can precipitation explain the differences in vegetation trends between human perturbed and pristine regions? Answer: No, apparently. 
+    - **References:**
+        - Volante, J. N., Alcaraz-Segura, D., Mosciaro, M., Viglizzo, E. F., and Paruelo, J. (2012). [Ecosystem functional changes associated with land clearing in nw argentina](https://www.sciencedirect.com/science/article/pii/S016788091100291X?casa_token=fsAnBYzgx-gAAAAA:YJxp8BFtU-Oh9rudwZxGDh73GSzzyt6UOBWPbF4pozOvCFRaKyt3GOf9T7xxJHFxDAguYMTsDg). Agriculture, Ecosystems & Environment, 154:12–22.
+
+- [notable_regions_nordeste.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/multiple_variables/notable_regions_nordeste.ipynb?flush_cache=true).
+    - **Key ideas:**
+        - Vegetation indexes for Brazilian Northeast region (Nordeste) coming from AVHRR (NDVI) and MODIS (NDVI, EVI).
+        - Precipitation data from CHIRPS.
+        - AVHRR (NDVI): 15-day time step, from 07-1981 to 12-2015; 1/12° x 1/12° (8 km x 8 km) spatial resolution. 
+        - MODIS (NDVI, EVI): monthly time step, from 02-2000 to 01-2021; 0.05° x 0.05° (5 km x 5 km) spatial resolution.
+        - CHIRPS (Precipitation): Same spatiotemporal grid as the AVHRR's one.
+        - Can precipitation explain the differences in vegetation trends between human perturbed and pristine regions? Answer: Yes, apparently.
+
 - [surface_relative_humidity.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/multiple_variables/surface_relative_humidity.ipynb?flush_cache=true):
     - **Main ideas:**
         - Notebook intended to calculate `daily` relative humidity at surface based on ERA-INTERIM datasets of temperature and dew point temperature both at surface (2 m above the ground). Based on Clausius-Clayperon equation: es(T) = 6.1094 exp((17.625 * T)/(T + 243.04)), where T is temperature in degree Celsius, you can calculate relative humidity RH as the following: RH =(es(Td))/(es(T)) * 100\%, where Td is the dew point temperature.
