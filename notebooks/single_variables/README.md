@@ -97,3 +97,11 @@ Python notebooks intended to explore and analyze atmospheric and surface variabl
         - Explore single `global` file.
         - Explore all data available for `South America` resampled from `12-houy` to `daily`, `annual`, `semi-monthly`, and `monthly` sums: (1), time series, (2) monthly climatology, and (3) long term ordinary least square `OLS` trends of observed data.
         - No evaluation of statistical significances for OLS trends.
+
+- [tree_cover_modis_amazonia.ipynb](https://nbviewer.jupyter.org/github/SandroAlex/phd/blob/master/notebooks/single_variables/tree_cover_modis_amazonia.ipynb?flush_cache=true):
+    - **Key ideas:**
+        - Intensive RAM Memory operations, run this notebook in aerossol server.
+        - Understanding [MODIS sinusoidal tile grid](https://modis-land.gsfc.nasa.gov/MODLAND_grid.html).
+        - Annual (2019 - 2020) tree cover in Part of Amazonia from [MOD44B v006: MODIS/Terra Vegetation Continuous Fields Yearly L3 Global 250 m SIN](https://lpdaac.usgs.gov/products/mod44bv006/) product.
+        - Learning how to reproject MODIS data using [rioxarray package](https://corteva.github.io/rioxarray/stable/). 
+        - From sinusoidal projection to a `coarser` latitude-longitude regular grid (0.01°x0.01°).
