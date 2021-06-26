@@ -1,0 +1,816 @@
+\documentclass[11pt]{beamer}
+
+\mode<presentation> {
+  \usetheme{Singapore} 
+  \usecolortheme{seagull}
+  \setbeamertemplate{section in toc}[ball unnumbered]
+  \setbeamerfont{section in toc}{size=\scriptsize}
+  \setbeamertemplate{subsection in toc}[ball unnumbered]
+  \setbeamerfont{subsection in toc}{size=\scriptsize}
+  \usebeamercolor[fg]{page number in head/foot}
+  \setbeamertemplate{footline}[page number]
+  \setbeamerfont{page number in head/foot}{size=\large}
+  \setbeamercolor{page number in head/foot}{fg=black}
+  \setbeamercolor{block title}{bg=blue!50, fg=black}
+  \setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{newverbs}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage[style=authoryear]{biblatex}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage[version=3]{mhchem}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{pythonhighlight}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage[export]{adjustbox}
+\usetikzlibrary{arrows, automata}
+\graphicspath{
+  {/home/alex/Dropbox/doutorado/figuras/}
+  {/home/alex/Dropbox/repositories/phd/images/}
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  filecolor=cyan,      
+  urlcolor=magenta,
+}
+
+\newcommand{\btVFill}{\vskip0pt plus 1filll}
+
+\usepackage{ragged2e}
+\justifying
+\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+\addtobeamertemplate{block begin}{}{\justifying\setlength{\parindent}{2em}}
+
+\newverbcommand{\bverb}{\color{blue}}{}
+\newverbcommand{\gverb}{\color{green}}{}
+\newverbcommand{\kverb}{\color{black}}{}
+\newverbcommand{\rverb}{\color{red}}{}
+
+\makeatletter
+\newlength\beamerleftmargin
+\setlength\beamerleftmargin{\Gm@lmargin}
+\makeatother
+
+% João (1988)
+\newcommand{\citatu}[2]{\textbf{\textcolor{blue}{#1 (#2)}}}        
+
+% (João, 1988)
+\newcommand{\citapu}[2]{\textbf{\textcolor{blue}{(#1, #2)}}}       
+
+ % João et al. (1988)
+\newcommand{\citat}[2]{\textbf{\textcolor{blue}{#1 et al. (#2)}}}
+
+% (João et al., 1988)
+\newcommand{\citap}[2]{\textbf{\textcolor{blue}{(#1 et al., #2)}}} 
+
+ % João et al., 1988 [Para citar varios]
+\newcommand{\citav}[2]{\textbf{\textcolor{blue}{#1 et al., #2}}}
+
+ % João, 1988 [Para citar varios]
+\newcommand{\citavu}[2]{\textbf{\textcolor{blue}{#1, #2}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title[
+  \textbf{\textcolor{blue}{
+    Presentation
+  }} 
+]{\\[0.01cm]
+  \large{\textbf{\textcolor{black}{
+    Datalab Journal Club 
+  }}} \\
+  
+  \small{\textcolor{black}{
+    \emph{Presentation}
+  }} \\[0.50cm]
+
+  \large{\textbf{\textcolor{black}{
+	  Long Term Trends for Vegetation in South America 
+  }}} \\
+    \small{PhD studies}
+} 
+
+\author{
+  \textcolor{black}{\textbf{
+      Alex Araujo 
+  }} \\
+    \small{Alexandre Correia, Pedro Dias, Henrique Barbosa}
+} 
+
+\institute[
+  University of São Paulo
+]{
+  \textcolor{black}{
+    University of São Paulo - USP \\ 
+    \medskip
+    \url{alex.araujo@usp.br}
+  }
+}
+
+\date{
+  \textcolor{black}{
+    \today
+  }
+}
+
+% Template for slide.
+%%%%%%%%%% Slide number %%%%%%%%%%
+% \begin{frame}[fragile]
+%   \frametitle{\normalsize{\textbf{
+%     Title
+%   }}} 
+%
+%   \scriptsize{  
+%
+%   }
+% \end{frame}
+
+%%%%%%%%%% Slide 1 %%%%%%%%%%
+{
+  \usebackgroundtemplate{
+    \centering
+    \includegraphics[
+      width=\paperwidth, height=0.92\paperheight
+    ]{background.jpg}
+  }
+  \begin{frame}
+    \titlepage 
+  \end{frame}
+}
+
+%%%%%%%%%% Slide 2 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+    Presentation Structure
+  }}}
+  
+  \tableofcontents
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 3 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Abstract
+  }}} 
+
+  \scriptsize{  
+
+    There is a growing body of evidence showing that \textbf{\textcolor{green}{
+    global and regional vegetation is greening at least since the beginning of 
+    80’s, and it is considered a signature of anthropogenic climate change}}. 
+    Even though this is a very important scientific question, 
+    \textbf{\textcolor{red}{we note a gap in specific literature for what is 
+    happening in South American continent regarding vegetation trends}}. 
+    \textbf{\textcolor{blue}{The main goal of this work is to better understand 
+    the spatial patterns and their drivers for long term trends in vegetation 
+    dynamics of South America}}. \textbf{\textcolor{cyan}{For doing that, 
+    we analyze a widely used Normalized Difference Vegetation Index (NDVI) 
+    data set by means of a recently developed methodology for statistical 
+    significance that can simultaneously assess common problems found in 
+    environmental data analysis: (1) the appropriate statistics to measure 
+    monotonic long term trends, (2) temporal and (3) spatial autocorrelations, 
+    and (4) multiple hypothesis tests}}. Our results show a strong signal in 
+    Brazilian areas notoriously affected by human land use change, places where 
+    the vegetation show browning trends (Rondônia, Amazonas River, Rio de Janeiro
+     - São Paulo axis, and Arc of Deforestation), as well as great contiguous 
+    arid lands in Brazilian Northeast region and northern Argentina, where 
+    desertification is taking place. On the other hand, we observed areas with 
+    greening trends in Brazilian States of São Paulo and Minas Gerais, 
+    together with a long belt in Pacific coastal region, beginning in Peru
+    and going through Equator, Colombia, and Venezuela. \textbf{\textcolor{black}{
+    Taking into account only the results with statistical significance, we show 
+    that South America as a whole is becoming greener over the last three 
+    decades, in agreement with what has been observed across the globe.}}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 4 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    How Does NDVI Work?
+  }}} 
+
+  \scriptsize{  
+
+    Plants absorb radiation at red, but they reflect at near
+    infrared in order to avoid excessive heating of its internal tissues, 
+    where $\rho_{\text{infra}}$ are $\rho_{\text{red}}$ are reflectances:
+
+    \begin{equation}
+      \boxed{\text{NDVI} = \frac{\rho_{\text{infra}} -
+        \rho_{\text{red}}}{\rho_{\text{infra}} + \rho_{\text{red}}} \nonumber}
+    \end{equation} 
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.46\linewidth, keepaspectratio]{ndvi1.jpg}
+      \includegraphics[width=0.46\linewidth, keepaspectratio]{ndvi2.jpg} \\
+      \includegraphics[width=0.46\linewidth, keepaspectratio]{ndvi3.jpg}
+      \includegraphics[width=0.46\linewidth, keepaspectratio]{ndvi4.jpg}
+      \caption*{\scriptsize{
+          Source: \href{https://eos.com/blog/ndvi-faq-all-you-need-to-know-about-ndvi/}{NDVI FAQ: All You Need To Know About Index}.
+      }}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%%% Slide 5 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Weather and Climate Data
+  }}}
+
+  \scriptsize{
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.25\textheight, keepaspectratio]{table_ml.png} \\
+      \includegraphics[width=0.75\textwidth, keepaspectratio]{hypercubes.png} 
+      \includegraphics[width=0.20\textwidth, keepaspectratio]{grid.png}
+    \end{figure}
+    
+    \textbullet \: \textbf{\textcolor{blue}{NetCDF}} (Network Common Data Form) is a set of software 
+    libraries and machine-independent data formats that support the creation, 
+    access, and sharing of array-oriented scientific data. It is also a community 
+    standard for sharing scientific data. 
+
+    \textbullet \: Interfaces available for C, C++, Java, Fortran, 
+    \textbf{\textcolor{blue}{Python}}, IDL, MATLAB, R, Ruby, and Perl.
+
+    \textbullet \: Data in netCDF format is \textbf{\textcolor{blue}{self-describing}}, 
+    \textbf{\textcolor{blue}{portable}}, \textbf{\textcolor{blue}{scalable}}, 
+    \textbf{\textcolor{blue}{appendable}}, \textbf{\textcolor{blue}{sharable}}, and 
+    \textbf{\textcolor{blue}{archivable}}. 
+  }
+\end{frame}
+
+%%%%%%%%%% Slide 6 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Tools for Climate Science
+  }}} 
+
+  \scriptsize{
+    
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=\textwidth, height=\textheight,keepaspectratio]
+                      {tools.jpg}
+    \end{figure}
+    
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methodology}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Slide 7 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+        Data Source for Vegetation (GIMMS NDVI3g 1981 - 2015)
+  }}} 
+
+  \scriptsize{
+    
+    \begin{columns}
+      \column{0.50\linewidth}
+
+      \textbullet \: Vegetation indices are radiometric
+      measures of photosynthetically active radiation absorbed by chlorophyll in
+      plants. \\
+
+      \textbullet \:They are surrogates of vegetation development as well as
+      land use change. \\
+
+      \textbullet \: \textbf{N}ormalized \textbf{D}ifference \textbf{V}egetation
+      \textbf{I}ndex NDVI. \\[0.10cm]  
+      
+      \textbullet \: Plants absorb radiation at red, but they reflect at near
+      infrared in order to avoid excessive heating of its internal tissues:
+
+      \begin{equation}
+        \boxed{\text{NDVI} = \frac{\rho_{\text{infra}} -
+          \rho_{\text{red}}}{\rho_{\text{infra}} + \rho_{\text{red}}} \nonumber}
+      \end{equation} 
+      where $\rho_{\text{infra}}$ are $\rho_{\text{red}}$ are reflectances. 
+      
+      \column{0.60\linewidth}
+
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{ndvi_gimms.png}
+        \caption*{\scriptsize{
+            \citat{Pinzon and Tucker}{2014}
+        }}
+      \end{figure}
+      
+    \end{columns}
+
+    \vspace{0.10cm}
+    
+    \textbf{\textbullet \: Metadata:} (1) netCDF format; (2) Global domain;
+    \textcolor{red}{(3) 1/12 degree lat-2160 lon-4320}; (4) Daily time step;
+    \textcolor{red}{(5) Biweekly from 1981/07 to 2015/12}; (6) AVHRR input data. 
+   
+  }
+\end{frame}
+
+%%%%%%%%% Slide 8 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Trend Detection in Climate Data
+  }}} 
+
+  \scriptsize{  
+
+    \textbullet \: When analyzing \textbf{\textcolor{red}{statistical 
+    significance of trends in gridded environmental data over a large region}}, 
+    we face some challenges, and the four most important ones are: 
+    
+    \begin{enumerate}
+    \item \textbf{Use of an adequate estimator for monotonic trends};
+    \item Temporal autocorrelation;
+    \item Spatial autocorrelation;
+    \item The problem of multiple hypothesis test.  
+    \end{enumerate}
+
+    \textbullet \: \textbf{\textcolor{blue}{Theil-Sen estimator}}, 
+    a \textbf{\textcolor{green}{non-parametric}} robust analysis method to 
+    obtain monotonic trends $\beta$:
+
+    \begin{equation*}
+      \boxed{
+        \beta = \text{median} \left( \frac{\text{NDVI}_j - \text{NDVI}_i}{j - i}
+        \right); \: \: \: \forall j > i
+      }
+    \end{equation*}
+
+    where $i$ and $j$ are time series indexes, $\text{NDVI}_i$ and 
+    $\text{NDVI}_j$ denote the NDVI values at time $i$ and $j$, respectively. 
+    The estimator $\beta$ is the median of slopes in all the $n (n - 1) / 2$ 
+    possible pair combinations of data points for that spatial grid point. 
+    If $\beta > 0$, it indicates that the time series has an increasing 
+    trend, and vice-versa.
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 9 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Trend Detection in Climate Data
+  }}} 
+
+  \scriptsize{  
+
+    \textbf{\textcolor{red}{
+      1. Use of an adequate estimator for monotonic trends;
+    }}
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.90\linewidth, keepaspectratio]{datalab_ts.jpg} \\
+      \includegraphics[width=0.90\linewidth, keepaspectratio]{datalab_ts_dist.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 10 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Trend Detection in Climate Data
+  }}} 
+
+  \scriptsize{  
+
+    \textbf{\textcolor{red}{
+      2. Temporal autocorrelation;
+    }}
+
+    \begin{equation*}
+      \boxed{
+        r_k = 
+        \displaystyle\sum_{t=k+1}^{n-k} (x_{t-k} - \bar{x})(x_t - \bar{x})) 
+        \Bigg/
+        \displaystyle\sum_{t=1}^{n} (x_t - \bar{x})^2 = 
+        \text{\textbf{Corr}} (x_t, x_{t-k}), \: k=1,2, \cdots
+      }
+    \end{equation*}    
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.69\linewidth, keepaspectratio]{datalab_ts.jpg} \\
+      \includegraphics[width=0.69\linewidth, keepaspectratio]{datalab_temporal.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 11 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Trend Detection in Climate Data
+  }}} 
+
+  \scriptsize{  
+
+    \textbf{\textcolor{red}{
+      3. Spatial autocorrelation;
+    }}
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.9\textheight, keepaspectratio]{datalab_spatial.jpg} \\
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%%% Slide 12 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{
+    Trend Detection in Climate Data  
+  }}} 
+
+  \scriptsize{  
+
+    \textbf{\textcolor{red}{
+      4. The problem of multiple hypothesis test.
+    }} \\[0.10cm]
+
+    \textbullet \: Assume we wil perform $n$ \textbf{independent and
+     simultaneous hypothesis tests} each one at a desired $\alpha$ level. \\[0.10cm] 
+
+    \textbullet \: The probability of obtaining \textbf{at least one} 
+    significant result by chance (\textbf{false positive}) greatly increases. \\[0.10cm]
+
+    \textbullet \: This probability of at least one false positive
+    among a \emph{family} of tests is called the 
+    \textbf{Familywise error rate (FWER)} 
+
+    \begin{equation*}
+      P_0 + \underbrace{P_1 + P_2 + P_3 + P_4 + \cdots + P_n}_{\text{FWER}} = 1 
+      \Rightarrow \text{FWER} = 1 - P_0  
+      \Rightarrow \boxed{FWER = 1 - (1 - \alpha)^n}
+    \end{equation*}
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.35\textheight, keepaspectratio]{datalab_sa.jpg}
+      \includegraphics[width=0.70\textwidth, keepaspectratio]{datalab_fwer.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 13 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Data Permutation with Criteria
+  }}} 
+
+  \tiny{  
+
+    \begin{table}[h!]
+      \centering
+      \caption*{\tiny \textbullet \: One example of the shuffling procedure intended 
+      to generate \textbf{surrogate time series} that will be used to build 
+      \textbf{null distribution} in trend significance tests. Each grid point 
+      is a time series with \textbf{828} data points with time indexes 
+      \textbf{from 1981-07-01 to 2015-12-15}. After the permutation of
+      the natural order, we obtain one shuffled \textbf{\textcolor{red}{
+        time series that preserves much of the original temporal 
+        autocorrelation.}}}
+      \begin{tabular}{|c||c|c|}
+        \hline
+        \textbf{Count} & \textbf{Original} & \textbf{Shuffled} \\ \hline \hline
+        1 & 1981-07-01 & 1986-07-01 \\ \hline
+        2 & 1981-07-15 & 1996-07-15 \\ \hline
+        3 & 1981-08-01 & 2003-08-01 \\ \hline
+        4 & 1981-08-15 & 2000-08-15 \\ \hline
+        5 & 1981-09-01 & 2003-09-01 \\ \hline
+        6 & 1981-09-15 & 2013-09-15 \\ \hline
+        7 & 1981-10-01 & 2006-10-01 \\ \hline
+        8 & 1981-10-15 & 2007-10-15 \\ \hline
+        9 & 1981-11-01 & 1986-11-01 \\ \hline
+        10 & 1981-11-15 & 1989-11-15 \\ \hline
+        11 & 1981-12-01 & 2002-12-01 \\ \hline
+        12 & 1981-12-15 & 1993-12-15 \\ \hline
+        13 & 1982-01-01 & 1986-01-01 \\ \hline
+        14 & 1982-01-15 & 1993-01-15 \\ \hline
+        \vdots & \vdots & \vdots \\ \hline
+        825 & 2015-11-01 & 1984-11-01 \\ \hline
+        826 & 2015-11-15 & 1984-11-15 \\ \hline
+        827 & 2015-12-01 & 2001-12-01 \\ \hline
+        828 & 2015-12-15 & 2008-12-15 \\ \hline
+      \end{tabular}
+      \label{tab:shuffle}
+    \end{table}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 14 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Data Permutation with Criteria
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.925\textheight, keepaspectratio]{datalab_permutation1.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 15 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Data Permutation with Criteria
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.925\textheight, keepaspectratio]{datalab_permutation2.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 16 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Data Permutation with Criteria
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \includegraphics[width=\textwidth, keepaspectratio]{datalab_permutation3.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 17 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Data Permutation with Criteria
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.925\textwidth, keepaspectratio]{datalab_permutation4.jpg} \\
+      \includegraphics[width=1.05\textwidth, keepaspectratio]{datalab_permutation5.jpg}
+      \caption*{\citav{Cortés}{2020}}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Slide 18 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Summary Statistics
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.93\textheight, keepaspectratio]{results1.jpg} \\
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 19 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Summary Statistics
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.93\textheight, keepaspectratio]{monthly_means.jpg} \\
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 20 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Forest, Savanna, and Treeless 
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=5.5cm]{results2.jpg}
+      \includegraphics[width=3.5cm]{results3.jpg} \\
+      \includegraphics[width=9.925cm]{results4.jpg}
+    \end{figure}
+  
+  }
+\end{frame}
+
+%%%%%%%%% Slide 21 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Time Peaking
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[height=0.76\textheight, keepaspectratio]{results5.jpg}
+      \includegraphics[height=0.76\textheight, keepaspectratio]{results6.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 22 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Long Term Trends of South American Vegetation Activity
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.925\linewidth, keepaspectratio]{results7.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 23 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Long Term Trends of South American Vegetation Activity
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=\linewidth, keepaspectratio]{results8.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Work in Progress}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Slide 24 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Amazonia - Different Instruments from Different Satellites
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=\linewidth, keepaspectratio]{wip1.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 25 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Amazonia - Different Instruments from Different Satellites
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.925\linewidth, keepaspectratio]{wip2.jpg} \\
+      \includegraphics[width=0.925\linewidth, keepaspectratio]{wip3.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 26 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Deforestation in Amazonia
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=\linewidth, keepaspectratio]{wip4.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%% Slide 27 %%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{\normalsize{\textbf{
+    Deforestation in Amazonia
+  }}} 
+
+  \scriptsize{  
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=\linewidth, keepaspectratio]{wip5.jpg}
+    \end{figure}
+
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{99}
+  
+  %%%%%%%%%% Slide 28 %%%%%%%%%%%
+  \begin{frame}
+    \frametitle{\normalsize{\textbf{
+          Bibliography 
+    }}}
+
+    \scriptsize{
+      
+    \bibitem{}
+      Cortés, J., Mahecha, M. D., Reichstein, M., and Brenning, A. (2020). 
+      Accounting for multiple testing in the analysis of spatio-temporal 
+      environmental data. Environmental and Ecological Statistics.
+
+    \bibitem{}
+      Pinzon, J. and Tucker, C. (2014). A non-stationary 1981–2012 avhrr ndvi3g
+      time series. Remote Sensing, 6(8):6929–6960. 
+
+    } 
+
+  \end{frame}
+\end{thebibliography}
+
+%%%%%%%%%% Slide 29 %%%%%%%%%%
+\begin{frame}
+  \frametitle{\normalsize{\textbf{The End}}}
+
+  \section{}
+  \begin{center}
+    \huge{Thank You !}
+  \end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
